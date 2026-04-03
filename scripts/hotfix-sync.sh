@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
 # Синхронизация веток staging и dev после заливки хотфикса в main.
 # Использование: pnpm run hotfix-sync
-_tmp=$(mktemp) && sed 's/\r//' "$0" > "$_tmp" && chmod +x "$_tmp" && exec bash "$_tmp" "$@"
-
 set -euo pipefail
 
 # --- Цвета ---
@@ -15,6 +13,16 @@ RESET='\033[0m'
 log_step() { echo -e "${CYAN}==> $1${RESET}"; }
 log_ok()   { echo -e "${GREEN}OK: $1${RESET}"; }
 log_err()  { echo -e "${RED}ОШИБКА: $1${RESET}"; }
+
+# --- Проверка терминала на Windows ---
+case "$(uname -s)" in
+    MINGW*|MSYS*)
+        if [ -z "${MSYSTEM:-}" ]; then
+            log_err "На Windows запускай скрипт через Git Bash."
+            exit 1
+        fi
+        ;;
+esac
 
 # --- Запоминаем исходную ветку ---
 ORIGINAL_BRANCH=$(git rev-parse --abbrev-ref HEAD)
