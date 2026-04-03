@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 # Синхронизация веток staging и dev после заливки хотфикса в main.
 # Использование: pnpm run hotfix-sync
+# shellcheck disable=SC2251
+sed -i 's/\r//' "$0" && exec "$0" "$@"
 
 set -euo pipefail
 
