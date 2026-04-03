@@ -35,11 +35,3 @@ ssh-add ~/.ssh/id_ed25519
 ### Терминал на Windows
 
 Запускать из **Git Bash** (не PowerShell, не CMD). В VSCode: `Ctrl+Shift+P` -> `Terminal: Select Default Profile` -> `Git Bash`.
-
-## Перед первым запуском (только при клонировании на Windows)
-
-После клонирования переиндексировать скрипт, чтобы он имел корректные LF-окончания строк:
-
-```bash
-git rm --cached scripts/hotfix-sync.sh && git add scripts/hotfix-sync.sh
-```
