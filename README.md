@@ -1,1 +1,1 @@
-# check-hotfix-sync
+Тест
