@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # Синхронизация веток staging и dev после заливки хотфикса в main.
 # Использование: pnpm run hotfix-sync
+_tmp=$(mktemp) && sed 's/\r//' "$0" > "$_tmp" && chmod +x "$_tmp" && exec bash "$_tmp" "$@"
 
 set -euo pipefail
 
